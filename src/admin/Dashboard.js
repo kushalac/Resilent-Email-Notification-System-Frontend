@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NotificationFilter from "./NotificationFilter";
 import NotificationFilterbyTime from "./NotificationFilterbytime";
-import styles from "./Dashboard.module.css"; // Import the CSS module
+import styles from "../css/Dashboard.module.css"; // Import the CSS module
 import Navbar from '../AdminNavbar';
 import { useAuth } from './AuthContext';
 import Login from './Login';
@@ -135,7 +135,7 @@ const { adminAuthenticated } = useAuth();
       <p className={styles["dashboard-stat"]}>{stats.totalNotificationSent}</p>
     </div>
     <NotificationFilter/>
-    <NotificationFilterbyTime/>
+     {/* <NotificationFilterbyTime/>  */}
   </div>
  
 </div>

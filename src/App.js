@@ -14,12 +14,14 @@ import SendNotification from './admin/SendNotification';
 import DeleteNotification from './admin/DeleteNotification';
 import { AuthProvider } from './admin/AuthContext'; // Import the AuthProvider
 import Dashboard from './admin/Dashboard';
+import ErrorBoundary from './ErrorBoundary';
 
 
 function App() {
   return (
     <Router>
       <AuthProvider> {/* Wrap the entire app with AuthProvider */}
+      <ErrorBoundary>
         <Routes>
           <Route path="/Admin" element={<Admin />} />
           <Route path="/CreateNotification" element={<CreateNotification />} />
@@ -35,6 +37,7 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard />} /> 
           <Route path="/" element={<Homepage />} />
         </Routes>
+        </ErrorBoundary>
       </AuthProvider>
     </Router>
   );

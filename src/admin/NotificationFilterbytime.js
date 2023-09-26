@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import styles from "./NotificationFilter.module.css"; // Import your CSS module
+import styles from "../css/NotificationFilter.module.css"; // Import your CSS module
 import '../css/Notification.css';
 function NotificationFilterbyTime() {
   const [notificationType, setNotificationType] = useState("promotions"); // Default to "promotions"
