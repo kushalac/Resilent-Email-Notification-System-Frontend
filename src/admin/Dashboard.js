@@ -135,7 +135,7 @@ const { adminAuthenticated } = useAuth();
       <p className={styles["dashboard-stat"]}>{stats.totalNotificationSent}</p>
     </div>
     <NotificationFilter/>
-     {/* <NotificationFilterbyTime/>  */}
+      <NotificationFilterbyTime/>  
   </div>
  
 </div>

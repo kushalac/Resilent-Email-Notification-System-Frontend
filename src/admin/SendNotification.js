@@ -66,7 +66,12 @@ const SendNotification = () => {
           text: data
         })
       } else {
-        throw new Error(`Server response was not ok (status ${response.status})`);
+        //throw new Error(`Server response was not ok (status ${response.status})`);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!!',
+          text: 'Please check the details correctly.'
+        })
       }
     } catch (error) {
       console.error("Error sending notification:", error);

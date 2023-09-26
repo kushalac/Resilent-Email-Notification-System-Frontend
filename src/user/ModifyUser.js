@@ -31,6 +31,16 @@ function ModifyUser() {
 
   const updateUser = (e) => {
     e.preventDefault(); 
+
+    // if (receiveNotifications === true && !(promotions || latestPlans || releaseEvents)) {
+      
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Error!!',
+    //     text: 'Please select at least one notification type.',
+    //   });
+    //   return;
+    // }
     const userData = {
       email,
       name,
@@ -128,7 +138,7 @@ function ModifyUser() {
         Swal.fire({
           icon: 'error',
           title: 'Error!!',
-          text: 'Some error occured during the process.'
+          text: 'Some error occurred during the process.'
         })
         setUserDataVisible(false); // Hide the user data modification section
       });
@@ -189,7 +199,7 @@ function ModifyUser() {
                     name="receiveNotifications"
                     value="yes"
                     checked={receiveNotifications === true}
-                    onChange={() => setReceiveNotifications(true)}
+                    onChange={() => toggleNotificationOptions()}
                     required
                   />
                 </div>
@@ -201,7 +211,7 @@ function ModifyUser() {
                     name="receiveNotifications"
                     value="no"
                     checked={receiveNotifications === false}
-                    onChange={() => setReceiveNotifications(false)}
+                    onChange={() => toggleNotificationOptions()}
                     required
                   />
                 </div>
