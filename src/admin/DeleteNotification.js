@@ -140,7 +140,7 @@ function DeleteNotification() {
               </select>
             </div>
             <br />
-            <div className="button-container">
+            <div className="button-container" style={{ marginTop: '280px',marginLeft:'130px' }}>
               <button onClick={deleteNotification} className="delete-button">
                 Delete Notification
               </button>

@@ -141,7 +141,7 @@ const SendNotification = () => {
 
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-            <div className="button-container" style={{ marginTop: '10px' }}>
+            <div className="button-container" style={{ marginTop: '180px',marginLeft:'130px' }}>
               <button type="submit" className="send-button">
                 Send Notification
               </button>

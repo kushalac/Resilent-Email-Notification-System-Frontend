@@ -180,7 +180,7 @@ function UpdateNotification() {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
           <br />
-          <div className="button-container" style={{ marginTop: '10px' }}>
+          <div className="button-container" style={{ marginTop: '10px',marginLeft:'130px' }}>
             <button onClick={updateNotification} className="update-button">
               Update Notification
             </button>

@@ -51,6 +51,7 @@ function NotificationFilterbyTime() {
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
+          max={new Date().toISOString().split('T')[0]}
         />
       </div>
       <div>
@@ -59,7 +60,7 @@ function NotificationFilterbyTime() {
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          max={new Date().toISOString().split('T')[0]}
+          max={(new Date(new Date().getTime() + 24 * 60 * 60 * 1000)).toISOString().split('T')[0]}
         />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
