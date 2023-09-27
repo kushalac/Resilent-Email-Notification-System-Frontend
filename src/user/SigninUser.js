@@ -29,11 +29,11 @@ const SigninUser = () => {
 
   return (
     <div className="admin-container">
+        <div className='navbarblock'>
      <Navbar userName={"Welcome " + userName} />
-      <div className="containerbuttons">
-      <div className='editcontainerbuttons'>
-        {/* Buttons Container */}
-        <div className="button-container">
+     </div>
+
+     <div className="button-containeruser">
 
           {/* User Modification Button */}
           <button className="square-button" onClick={handleModifyUserClick}>
@@ -47,7 +47,7 @@ const SigninUser = () => {
             <span className="button-text">Delete</span>
           </button>
         </div>
-        </div>
+        <div className="imageblock">
       </div>
     </div>
   );

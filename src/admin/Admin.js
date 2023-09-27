@@ -47,11 +47,11 @@ const Admin = () => {
 
   return (
     <div className="admin-container">
+      <div className='navbarblock'>
       <Navbar />
-      <div className="containerbuttons">
-        <div className="editcontainerbuttons">
-        
-        <div className="button-container">
+      </div>
+     
+      <div className="button-container">
           <button className="square-button" onClick={handleCreateNotificationClick}>
             <FontAwesomeIcon icon={faEnvelope} />&nbsp;
             <span className="button-text">Create Notification</span>
@@ -77,8 +77,7 @@ const Admin = () => {
             <span className="button-text">Dashboard</span>
           </button>
         </div>
-        </div>
-      </div>
+      <div className="imageblock"></div>
     </div>
   );
 };

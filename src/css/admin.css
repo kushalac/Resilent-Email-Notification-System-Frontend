@@ -7,14 +7,40 @@
   box-sizing: border-box;
 }
 
-/* Container */
-.containerbuttons {
-  font-family: Arial, sans-serif;
-  background-color: #f2f5f9;
-  /* background: linear-gradient(to bottom, rgba(251, 251, 251, 0.7), rgba(167, 152, 125, 0.7)), url('../images/email.png'); */
-  background-image: url('../images/email.png'); /* Soothing light blue background */
-  background-size: cover;
-  background-position: 450px 0px;
+.navbarblock{
+  position: fixed;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
+/* Square button container */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 150px;
+  position: fixed;
+  margin-left: 50px;
+}
+
+.button-containeruser
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 300px;
+  position: fixed;
+  margin-left: 50px;
+}
+
+.imageblock{
+  background-image: url('../images/email.png');
   background-repeat: no-repeat;
   position: fixed;
   width: 100%;
@@ -23,24 +49,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-}
-
-.editcontainerbuttons{
-  margin-left: -1100px;
-  display: flex;
-  flex-direction: column; /* Align buttons vertically */
-  
-}
-
-/* Header text */
-.typing-text {
-  font-size: 60px; /* Larger header text */
-  color: #333;
-  font-weight: bold; /* Make the text bold */
-  margin-bottom: 30px;
-  text-align: center; /* Center-align the header */
-  white-space: nowrap; /* Prevent text from wrapping */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
+  margin-left: 360px;
+  margin-top: 50px;
 }
 
 /* Primary button style */
@@ -67,24 +77,14 @@
   transform: scale(1.08); /* Slightly scale up on hover */
 }
 
-/* Square button container */
-.button-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-}
 
 /* Square button style */
 .square-button {
   background: #f6bd60;; /* Gradient background */
   color: #000000;
   padding: 20px; /* Increased padding */
-  font-size: 24px; /* Slightly increased font size */
-  width: 290px;
+  font-size: 18px; /* Slightly increased font size */
+  width: 250px;
   border: none;
   border-radius: 12px;
   cursor: pointer;

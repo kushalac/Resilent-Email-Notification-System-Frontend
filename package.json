@@ -55,6 +55,9 @@
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1"
   },
-  "jest": {     "moduleNameMapper": {       "^axios$": "axios/dist/node/axios.cjs"    }   }
-  
+  "jest": {
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
+    }
+  }
 }
