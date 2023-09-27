@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../admin/AuthContext';
 import Navbar from '../signinNavbar';
 import { useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 function ModifyUser() {
-  
-  const Swal = require('sweetalert2');
   const location = useLocation();
   const userEmail = location.state?.userEmail;
+  const userName = location.state?.userName;
   const { userAuthenticated } = useAuth();
   const [email] = useState(userEmail || '');
   const [name, setName] = useState('');
@@ -30,17 +30,18 @@ function ModifyUser() {
   };
 
   const updateUser = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    // if (receiveNotifications === true && !(promotions || latestPlans || releaseEvents)) {
-      
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: 'Error!!',
-    //     text: 'Please select at least one notification type.',
-    //   });
-    //   return;
-    // }
+    // Check if the user has selected to receive notifications
+    if (receiveNotifications && !(promotions || latestPlans || releaseEvents)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!!',
+        text: 'Please select at least one notification type.',
+      });
+      return;
+    }
+
     const userData = {
       email,
       name,
@@ -66,15 +67,14 @@ function ModifyUser() {
           Swal.fire({
             icon: 'success',
             title: 'Success!!',
-            text: 'User updated successfully'
-          })
+            text: 'User updated successfully',
+          });
         } else {
           Swal.fire({
             icon: 'error',
             title: 'Error!!',
-            text: 'An error occurred while updating the user.'
-          })
-
+            text: 'An error occurred while updating the user.',
+          });
         }
         setUserDataVisible(false); // Hide the user data modification section
       })
@@ -83,8 +83,8 @@ function ModifyUser() {
         Swal.fire({
           icon: 'error',
           title: 'Error!!',
-          text: 'An error occurred while updating the user.'
-        })
+          text: 'An error occurred while updating the user.',
+        });
         setUserDataVisible(false); // Hide the user data modification section
       });
   };
@@ -95,8 +95,8 @@ function ModifyUser() {
       Swal.fire({
         icon: 'warning',
         title: 'Email Missing!!',
-        text: 'Please enter your email'
-      })
+        text: 'Please enter your email',
+      });
       return;
     }
 
@@ -128,8 +128,8 @@ function ModifyUser() {
           Swal.fire({
             icon: 'error',
             title: 'Error!!',
-            text: 'User not found.'
-          })
+            text: 'User not found.',
+          });
           setUserDataVisible(false); // Hide the user data modification section
         }
       })
@@ -138,15 +138,15 @@ function ModifyUser() {
         Swal.fire({
           icon: 'error',
           title: 'Error!!',
-          text: 'Some error occurred during the process.'
-        })
+          text: 'Some error occurred during the process.',
+        });
         setUserDataVisible(false); // Hide the user data modification section
       });
   };
 
   return (
     <div>
-      <Navbar />
+      <Navbar userName={userName} />
       <div className="container">
         <div className="signup-container" style={{ marginTop: '90px', marginBottom: '90px' }}>
           <h2>User Data Modification</h2>
@@ -154,14 +154,14 @@ function ModifyUser() {
             Confirm your Email Id:
           </label>
           <input
-              type="email"
-              id="email"
-              placeholder="Email"
-              required
-              className="input-field"
-              value={userEmail} // Use userEmail obtained from useLocation
-              readOnly // Make the input field read-only
-              style={{ width: '100%' }}
+            type="email"
+            id="email"
+            placeholder="Email"
+            required
+            className="input-field"
+            value={userEmail} // Use userEmail obtained from useLocation
+            readOnly // Make the input field read-only
+            style={{ width: '100%' }}
           />
 
           <div className="center-button">

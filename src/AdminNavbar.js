@@ -22,17 +22,12 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/admin">Admin</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/user" onClick={handleHomeClick}>
-            User
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link to="/about" onClick={handleHomeClick}>
             About Us
           </Link>
+        </li>
+        <li className='nav-item welcome'>
+          <h4>Admin</h4>
         </li>
         <li className="nav-item logout-button ">
           <Link to="/admin" onClick={handleHomeClick}>

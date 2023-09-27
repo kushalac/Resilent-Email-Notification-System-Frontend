@@ -234,4 +234,10 @@ input[type="email"] {
   right: 20px;
 }
 
+.welcome{
+  position: absolute;
+
+  right: 150px;
+}
+
 

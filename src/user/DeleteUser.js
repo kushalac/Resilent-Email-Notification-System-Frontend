@@ -8,6 +8,7 @@ function DeleteUser() {
   const Swal = require('sweetalert2');
   const location = useLocation();
   const userEmail = location.state?.userEmail;
+  const userName = location.state?.userName;
   const [email] = useState(userEmail || '');
   const { userAuthenticated } = useAuth();
   
@@ -60,7 +61,7 @@ function DeleteUser() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar userName={userName} />
     <div className="container">
       <div className="delete-container">
         <h2>Delete User</h2>

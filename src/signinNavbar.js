@@ -5,8 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
 
-const Navbar = () => {
+const Navbar = ({ userName }) => {
+  
   const { logoutUser, logoutAdmin } = useAuth();
+  
 
   const handleHomeClick = () => {
     logoutAdmin();
@@ -22,17 +24,12 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/admin">Admin</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/user" onClick={handleHomeClick}>
-            User
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link to="/about" onClick={handleHomeClick}>
             About Us
           </Link>
+        </li>
+        <li className="nav-item welcome">
+          <h4>{userName}</h4>
         </li>
         <li className="nav-item logout-button ">
           <Link to="/user" onClick={handleHomeClick}>

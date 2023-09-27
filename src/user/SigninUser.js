@@ -13,11 +13,11 @@ const SigninUser = () => {
   const navigate = useNavigate();
   const { userAuthenticated} = useAuth();
   const handleModifyUserClick = () => {
-    navigate('/ModifyUser',{ state: { userEmail: userEmail } });
+    navigate('/ModifyUser',{ state: { userEmail: userEmail,userName } });
   };
 
   const handleDeleteClick = () => {
-    navigate('/DeleteUser',{ state: { userEmail: userEmail } });
+    navigate('/DeleteUser',{ state: { userEmail: userEmail,userName} });
   };
 
   useEffect(() => {
@@ -29,10 +29,9 @@ const SigninUser = () => {
 
   return (
     <div className="admin-container">
-      <Navbar />
+     <Navbar userName={"Welcome " + userName} />
       <div className="containerbuttons">
-        <h1 className="typing-text">Welcome {userName}</h1>
-
+      <div className='editcontainerbuttons'>
         {/* Buttons Container */}
         <div className="button-container">
 
@@ -47,7 +46,7 @@ const SigninUser = () => {
             <FontAwesomeIcon icon={faTrash} />&nbsp;
             <span className="button-text">Delete</span>
           </button>
-
+        </div>
         </div>
       </div>
     </div>

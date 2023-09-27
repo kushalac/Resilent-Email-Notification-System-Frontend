@@ -49,8 +49,8 @@ const Admin = () => {
     <div className="admin-container">
       <Navbar />
       <div className="containerbuttons">
-        <h1 className="typing-text">Welcome Admin</h1>
-
+        <div className="editcontainerbuttons">
+        
         <div className="button-container">
           <button className="square-button" onClick={handleCreateNotificationClick}>
             <FontAwesomeIcon icon={faEnvelope} />&nbsp;
@@ -61,9 +61,7 @@ const Admin = () => {
             <FontAwesomeIcon icon={faEdit} />&nbsp;
             <span className="button-text">Update Notification</span>
           </button>
-        </div>
-
-        <div className="button-container">
+        
           <button className="square-button" onClick={handleSendNotificationClick}>
             <FontAwesomeIcon icon={faBell} />&nbsp;
             <span className="button-text">Send Notification</span>
@@ -73,13 +71,12 @@ const Admin = () => {
             <FontAwesomeIcon icon={faTrash} />&nbsp;
             <span className="button-text">Delete Notification</span>
           </button>
-        </div>
 
-        <div className="button-container">
           <button className="square-button" onClick={handleDashboardClick}>
             <FontAwesomeIcon icon={faChartBar} />&nbsp;
             <span className="button-text">Dashboard</span>
           </button>
+        </div>
         </div>
       </div>
     </div>

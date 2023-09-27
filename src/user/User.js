@@ -19,9 +19,8 @@ const User = () => {
     <div className="admin-container">
       <Navbar />
       <div className="containerbuttons">
-        <h1 className="typing-text">Welcome User</h1>
-
         {/* Buttons Container */}
+        <div className='editcontainerbuttons'>
         <div className="button-container">
           {/* Signup Button */}
           <button className="square-button" onClick={handleSignupClick}>
@@ -34,6 +33,7 @@ const User = () => {
             <span className="button-text">Signin</span>
           </button>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -10,12 +10,26 @@
 /* Container */
 .containerbuttons {
   font-family: Arial, sans-serif;
-  background-color: #f2f5f9; /* Soothing light blue background */
+  background-color: #f2f5f9;
+  /* background: linear-gradient(to bottom, rgba(251, 251, 251, 0.7), rgba(167, 152, 125, 0.7)), url('../images/email.png'); */
+  background-image: url('../images/email.png'); /* Soothing light blue background */
+  background-size: cover;
+  background-position: 450px 0px;
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+}
+
+.editcontainerbuttons{
+  margin-left: -1100px;
+  display: flex;
+  flex-direction: column; /* Align buttons vertically */
+  
 }
 
 /* Header text */
@@ -59,13 +73,15 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  display: flex;
+  flex-direction: column;
   margin-top: 40px;
 }
 
 /* Square button style */
 .square-button {
-  background: linear-gradient(to bottom, #ff5b00, #ff9600); /* Gradient background */
-  color: #fff;
+  background: #f6bd60;; /* Gradient background */
+  color: #000000;
   padding: 20px; /* Increased padding */
   font-size: 24px; /* Slightly increased font size */
   width: 290px;
@@ -80,9 +96,9 @@
 }
 
 .square-button:hover {
-  background: linear-gradient(to bottom, #2ecc71, #27ae60); /* Change gradient color on hover */
+  background: #92b1d1; /* Change gradient color on hover */
   transform: scale(1.1); /* Slightly scale up on hover */
-  color: #fff; /* Change text color back to white on hover */
+  color: #000000; /* Change text color back to white on hover */
 }
 
 /* Icon adjustments */
