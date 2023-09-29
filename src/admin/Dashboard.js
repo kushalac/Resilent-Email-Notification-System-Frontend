@@ -2,47 +2,27 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NotificationFilter from "./NotificationFilter";
 import NotificationFilterbyTime from "./NotificationFilterbytime";
-import styles from "../css/Dashboard.module.css"; // Import the CSS module
-import Navbar from '../AdminNavbar';
-import { useAuth } from './AuthContext';
-import Login from './Login';
+import styles from "../css/Dashboard.module.css";
+import Navbar from "../AdminNavbar";
+import { useAuth } from "./AuthContext";
+import Login from "./Login";
+import DashboardChart from "./DashboardChart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 
-
 function Dashboard() {
-const { adminAuthenticated } = useAuth();
-  const [stats, setStats] = useState({
-    activeTrueCount: 0,
-    activeFalseCount: 0,
-    receiveNotificationsCount: 0,
-    promotionsCount: 0,
-    latestPlansCount: 0,
-    releaseEventsCount: 0,
-    notReceiveNotificationsCount: 0,
-    totalPromotionsCount: 0,
-    totalReleaseEventsCount: 0,
-    totalLatestPlansCount: 0,
-    totalNotificationsCount: 0,
-    totalPromotionsToUsersCount: 0,
-    totalReleaseEventsToUsersCount: 0,
-    totalLatestPlansToUsersCount: 0,
-    totalNotificationSent: 0
-
-  });
+  const { adminAuthenticated } = useAuth();
+  const [stats, setStats] = useState({});
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/dashboard/getStats")
-      .then((response) => {
-        setStats(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching dashboard stats: ", error);
-      });
-  }, []);
+    if (adminAuthenticated) {
+      fetchData();
+    }
+  }, [adminAuthenticated]);
 
   const fetchData = () => {
+    setRefreshing(true);
     axios
       .get("http://localhost:8080/dashboard/getStats")
       .then((response) => {
@@ -50,11 +30,14 @@ const { adminAuthenticated } = useAuth();
       })
       .catch((error) => {
         console.error("Error fetching dashboard stats: ", error);
+      })
+      .finally(() => {
+        setRefreshing(false);
       });
   };
 
   const handleRefresh = () => {
-    fetchData(); // Fetch and update the content
+    fetchData();
   };
 
   if (!adminAuthenticated) {
@@ -65,87 +48,68 @@ const { adminAuthenticated } = useAuth();
     );
   }
 
-  return (
-    <div className="admin-container">
-      <Navbar />
-    <div className={styles["dashboard-container"]}>
-  <h1 className={styles["dashboard-title"]}>Dashboard Statistics</h1>
-  <button onClick={handleRefresh} className="create-button" style={{ marginLeft: '1000px' }}>
-  <FontAwesomeIcon icon={faSync} />  Refresh
-</button>
-  <div className={styles["dashboard-stats"]}>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Active Users</h2>
-      <p className={styles["dashboard-stat"]}>{stats.activeTrueCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Inactive Users</h2>
-      <p className={styles["dashboard-stat"]}>{stats.activeFalseCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Users Subscribed for Notifications</h2>
-      <p className={styles["dashboard-stat"]}>{stats.receiveNotificationsCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Users Subscribed for Promotions</h2>
-      <p className={styles["dashboard-stat"]}>{stats.promotionsCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Users Subscribed for Latest Plans</h2>
-      <p className={styles["dashboard-stat"]}>{stats.latestPlansCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Users Subscribed for Release Events</h2>
-      <p className={styles["dashboard-stat"]}>{stats.releaseEventsCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Users not Subscribed for Notifications</h2>
-      <p className={styles["dashboard-stat"]}>{stats.notReceiveNotificationsCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Promotion Notifications</h2>
-      <p className={styles["dashboard-stat"]}>{stats.totalPromotionsCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Release events Notifications</h2>
-      <p className={styles["dashboard-stat"]}>{stats.totalReleaseEventsCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Latest plans Notifications</h2>
-      <p className={styles["dashboard-stat"]}>{stats.totalLatestPlansCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Total Notifications</h2>
-      <p className={styles["dashboard-stat"]}>{stats.totalNotificationsCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Promotion Notifications sent</h2>
-      <p className={styles["dashboard-stat"]}>{stats.totalPromotionsToUsersCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Release events Notifications sent</h2>
-      <p className={styles["dashboard-stat"]}>{stats.totalReleaseEventsToUsersCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Latest plans Notifications sent</h2>
-      <p className={styles["dashboard-stat"]}>{stats.totalLatestPlansToUsersCount}</p>
-    </div>
-    <div className={styles["dashboard-card"]}>
-      <h2 className={styles["dashboard-card-title"]}>Notifications sent</h2>
-      <p className={styles["dashboard-stat"]}>{stats.totalNotificationSent}</p>
-    </div>
-    <NotificationFilter/>
-      <NotificationFilterbyTime/>  
-  </div>
- 
-</div>
- <div>
-    
-  </div>
-</div>
+  const chartData1 = [
+    { label: "Active", value: stats.activeTrueCount },
+    { label: "Inactive", value: stats.activeFalseCount },
+  ];
 
+  const chartData2 = [
+    { label: "Notifications", value: stats.receiveNotificationsCount },
+    { label: "Promotions", value: stats.promotionsCount },
+    { label: "Latest Plans", value: stats.latestPlansCount },
+    { label: "Release Events", value: stats.releaseEventsCount },
+  ];
+
+  const chartData3 = [
+    { label: "Promotion", value: stats.totalPromotionsCount },
+    { label: "Release events", value: stats.totalReleaseEventsCount },
+    { label: "Latest plans", value: stats.totalLatestPlansCount },
+    { label: "Total", value: stats.totalNotificationsCount },
+  ];
+
+  const chartData4 = [
+    { label:"Promotions",value: stats.totalPromotionsToUsersCount},
+    { label: "Release events", value: stats.totalReleaseEventsToUsersCount },
+    { label: "Latest plans", value: stats.totalLatestPlansToUsersCount },
+    { label: "Notifications", value: stats.totalNotificationSent },
+  ];
+
+  return (
+    <div>
+      <Navbar />
+      <div className={styles["dashboard-container"]}>
+        <h1 className={styles["dashboard-title"]}>Dashboard Statistics</h1>
+        <button onClick={handleRefresh} className="create-button" style={{ marginLeft: '1000px' }}>
+          <FontAwesomeIcon icon={faSync} />  Refresh
+        </button>
+        <div className={styles["chart-row"]}>
+          <div className={styles["chart-column"]}>
+            <h1>Users</h1>
+            <DashboardChart data={chartData1} className={styles["custom-chart"]} />
+          </div>
+          <div className={styles["chart-column"]}>
+            <h1>User Subscribed</h1>
+            <DashboardChart data={chartData2} className={styles["custom-chart"]} />
+          </div>
+        </div>
+
+        <div className={styles["chart-row"]}>
+          <div className={styles["chart-column"]}>
+            <h1>Notifications Count</h1>
+            <DashboardChart data={chartData3} className={styles["custom-chart"]} />
+          </div>
+          <div className={styles["chart-column"]}>
+            <h1>Notifications Sent</h1>
+            <DashboardChart data={chartData4} className={styles["custom-chart"]} />
+          </div>
+        </div>
+
+        <NotificationFilter />
+        <NotificationFilterbyTime />
+      </div>
+    </div>
 
   );
 }
 
-export default Dashboard;
+export default React.memo(Dashboard);

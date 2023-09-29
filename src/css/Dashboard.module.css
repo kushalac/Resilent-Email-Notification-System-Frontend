@@ -85,6 +85,46 @@
   color: #212121; /* Change text color back to white on hover */
 }
 
+/* Dashboard.module.css */
+.progress-bar {
+  width: 100%;
+  background-color: #f0f0f0; /* Background color of the progress bar */
+  height: 20px; /* Height of the progress bar */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 10px; /* Spacing between progress bars */
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #007bff; /* Color of the filled portion */
+  border-radius: 5px; /* Rounded corners */
+  transition: width 0.3s ease-in-out; /* Smooth animation */
+}
+
+/* Dashboard.module.css or your custom CSS file */
+
+.dashboard-container {
+  /* Your container styles here */
+}
+
+.dashboard-title {
+  /* Title styles here */
+}
+
+.custom-chart {
+  /* Custom styles for your charts here */
+}
+
+.chart-row {
+  display: flex; /* Display charts in a row */
+  justify-content: space-between; /* Space them evenly */
+}
+
+.chart-column {
+  flex: 1; /* Each chart takes equal space */
+}
+
+
 
 /* Additional styles can be added as needed for more advanced styling */
 
